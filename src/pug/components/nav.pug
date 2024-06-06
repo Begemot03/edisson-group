@@ -1,0 +1,34 @@
+include ./link.pug
+
+-
+    var links=[
+        {
+            name: "Главная",
+            href: "/"
+        },
+        {
+            name: "Каталог",
+            href: "/catalog"
+        },
+        {
+            name: "Монтаж",
+            href: "/mount"
+        },
+        {
+            name: "Галерея",
+            href: "/gallery"
+        },
+        {
+            name: "О нас",
+            href: "/about"
+        },
+        {
+            name: "Блог",
+            href: "/blog"
+        },
+    ]
+
+mixin nav
+    nav.nav
+        each link in links
+            +link(link.href, link.name).nav-item

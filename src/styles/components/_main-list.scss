@@ -1,0 +1,12 @@
+@use "../consts";
+
+.main-block {
+    position: relative;
+    padding-top: calc(var(--s-db-block) / 2);
+    padding-bottom: calc(var(--s-db-block) / 2);
+
+    .main-img {
+        margin-left: calc(100% - 620px);
+        margin-top: -5rem;
+    }
+}

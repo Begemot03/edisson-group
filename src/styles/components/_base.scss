@@ -1,0 +1,84 @@
+@use "../consts";
+
+:root {
+    --fs-html: 28px;
+    --s-db-block: 138px;
+}
+
+html {
+    font-size: var(--fs-html);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    color: consts.$clr-dark-500;
+}
+
+p, a, span, input::placeholder {
+    font-weight: 300;
+    font-size: consts.$sz-p;
+    color: consts.$clr-dark-500;
+}
+
+h1 {
+    font-size: consts.$sz-h1;
+}
+
+h2 {
+    font-size: consts.$sz-h2;
+}
+
+h3 {
+    font-size: consts.$sz-h3;
+}
+
+h4 {
+    font-size: consts.$sz-h4;
+}
+
+h5 {
+    font-size: consts.$sz-h5;
+}
+
+h6 {
+    font-size: consts.$sz-h6;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (width > 1440px) {
+    :root {
+        --fs-html: 28px;
+        --s-db-block: 138px;
+    }
+}
+
+@media (width < 1439px) and (width >= 960px) {
+    :root {
+        --fs-html: 22px;
+        --s-db-block: 102px;
+    }
+}
+
+@media (width < 959px) and (width >= 600px) {
+    :root {
+        --fs-html: 18px;
+        --s-db-block: 67px;
+    }
+}
+
+@media (width < 599px) {
+    :root {
+        --fs-html: 14px;
+        --s-db-block: 55px;
+    }
+}

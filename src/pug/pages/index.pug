@@ -1,11 +1,30 @@
-doctype html
-html(lang="en")
+include ./../components/nav.pug
+include ./../components/main-list.pug
+include ./../utils/img.pug
+
+doctype
+html(lang='en')
     head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        link(rel="stylesheet", href="./styles/style.min.css")
-    body 
-        p Hello world
-        img(src="./assets/2.webp", alt="")
-        script(src="./scripts/main.min.js")
+        meta(charset='utf-8')
+        link(rel="preconnect", href="https://fonts.googleapis.com")
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet")
+
+        link(rel="stylesheet", href="./styles/styles.min.css")
+
+        title Edisson Group - Главная
+    body
+        header
+            .container
+                +img("logo_64x104").logo(style="max-width: 64px; max-height: 104px;")
+                +nav
+
+        main.main-block
+            .container
+                h1 Эксклюзивные отделочные материалы для фасада и интерьера
+                +main-list
+            +img("mbi-termopanely").main-img(style="max-width: 620px; max-height: 491px")
+        
+
+
+        script(src="./scripts/main.min.js") 

@@ -15,6 +15,7 @@ import GulpUglify from "gulp-uglify";
 import concat from "gulp-concat";
 import cached from "gulp-cached";
 import sharpOptimizeImages from "gulp-sharp-optimize-images"
+import filter from "gulp-filter";
 
 
 
@@ -41,7 +42,7 @@ const pathes = {
         dist: "build/assets/",
     },
     pug: {
-        src: "src/pug/pages/**/*.pug",
+        src: "src/pug/**/*.pug",
         dist: "build/",
     }
 }
@@ -55,14 +56,18 @@ const serverSync = () => {
 
     watch(pathes.scripts.src, series(compileScripts, refresh));
     watch(pathes.pug.src, series(compilePug, refresh));
-    watch(pathes.assets.src, series(optimizeImg, refresh));
+    watch(pathes.assets.src, series(cleanAssets, optimizeImg, refresh));
     watch(pathes.styles.src, series(compileStyles, refresh));
 }
 
 export const compilePug = () => {
+    const onlyPages = filter(["src/pug/pages/**/*.pug"], { restore: true });
     return src(pathes.pug.src)
-                .pipe(cached('pug'))
+                // .pipe(cached('pug'))
+                .pipe(onlyPages)
                 .pipe(GulpPug())
+                .pipe(rename({ dirname: '' }))
+                // .pipe(onlyPages.restore)
                 .pipe(dest(pathes.pug.dist));
 }
 
@@ -106,7 +111,7 @@ export const compileStyles = () => {
 
 export const optimizeImg = () => {
     return src(pathes.assets.src, { encoding: false })
-                .pipe(cached("images"))
+                // .pipe(cached("images"))
                 .pipe(sharpOptimizeImages({
                     webp: {
                         quality: 80,
@@ -121,6 +126,7 @@ export const optimizeImg = () => {
 
 
 export const clean = () => deleteAsync(["build/*"]);
+export const cleanAssets = () => deleteAsync([`build/assets/*`]);
 
 export const build = series(clean, parallel(optimizeImg, compileScripts, compileStyles, compilePug));
 export const dev = series(clean, parallel(optimizeImg, compileScripts, compileStyles, compilePug), serverSync);

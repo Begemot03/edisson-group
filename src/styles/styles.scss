@@ -1,4 +1,4 @@
-body {
-    background-color: #000;
-    color: #fff;
-}
+@use "./components/base";
+@use "./components/nav";
+@use "./components/container";
+@use "./components/main-list";
